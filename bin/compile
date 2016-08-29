@@ -19,7 +19,7 @@ cd $BUILD_DIR
 export N_PREFIX=$BUILD_DIR/.n bash
 
 if [ -s ".versions" ]; then
-  curl -L http://git.io/n-install | bash -s -- -y 5.5.0 $(cat .versions)
+  curl -L http://git.io/n-install | bash -s -- -y 6.5.0 $(cat .versions)
 fi
 
 mkdir -p $BUILD_DIR/.profile.d
