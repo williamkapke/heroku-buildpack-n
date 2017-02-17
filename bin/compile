@@ -3,24 +3,11 @@
 BUILD_DIR=${1:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
-indent() {
-  sed -u 's/^/       /'
-}
-
-echo "-----> Found a .versions file"
-
-if [ ! -s $BUILD_DIR/.versions ]; then
-  echo ".versions empty. Skipping." | indent
-  exit 0
-fi
-
 cd $BUILD_DIR
 
 export N_PREFIX=$BUILD_DIR/.n bash
 
-if [ -s ".versions" ]; then
-  curl -L http://git.io/n-install | bash -s -- -y 6.5.0 $(cat .versions)
-fi
+curl -L http://git.io/n-install | bash -s -- -y
 
 mkdir -p $BUILD_DIR/.profile.d
 cp $BP_DIR/profile/* $BUILD_DIR/.profile.d/
